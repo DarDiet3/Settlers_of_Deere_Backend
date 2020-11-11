@@ -8,6 +8,7 @@ const cors = require ("cors");
 const app = express();
 const routes = require("./routes");
 
+
 const corsOptions = {
     origin: ['http://localhost:3000'],
     methods: "GET,POST,PUT,DELETE",
@@ -15,8 +16,26 @@ const corsOptions = {
     optionsSuccessStatus: 200 //legacy browsers
   }
 
+const verifyToken = (req, res, next) => {
+  let token =  req.headers["authorization"];
+
+  if(token){
+    token = token.substring(constants.BEARER_START_INDEX);
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decodedUser) => {
+    if(err || !decodedUser){
+      return regexp.status(constants.UNAUTHORIZED).send(`ERROR: ${err}`);
+    }
+  })
+}
+
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
+
+app.use('/auth', routes.auth);
+app.use('/user', routes.user); //ToDo: add Verify Token Midstep
+//ToDo: Figure out where to route leaderboard
 
 app.listen(process.env.PORT, () => {
     console.log(`Habemus connexion ad portum ${process.env.PORT}`)
