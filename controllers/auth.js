@@ -1,12 +1,15 @@
 require("dotenv").config;
 
 const User = require('../models').User;
+const Profile = require("../models").UserProfile;
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
 const constants = require("../constants");
 
 
+
 const signUp = (req,res) => {
+    console.log(req.body)
     // ToDo: add code for having default profile image and no image
     bcrypt.genSalt(10, (err,salt) => {
         if(err) {
@@ -17,7 +20,7 @@ const signUp = (req,res) => {
                 res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
             }
             req.body.password = hashedPwd;
-
+            let newUser1;
             User.create(req.body)
             .then(newUser => {
                 const token = jwt.sign(
@@ -35,6 +38,21 @@ const signUp = (req,res) => {
                     "token": token,
                     "user": newUser
                 });
+
+                newUser1 = newUser;
+                console.log(newUser.id)
+                return Profile.create({
+                    userId: newUser.id,
+                    profileImg: "",
+                    bio: "",
+                    gamesStarted: 0,
+                    gamesFinished: 0,
+                    gamesWon: 0,
+                    points: 0,
+                    plows: 0,
+                    combines: 0
+                })
+                
             })
             .catch(err => {
                 res.status(constants.BAD_REQUEST).end(`ERROR: ${err}`);
@@ -82,7 +100,7 @@ const login = (req, res) => {
 
 const verifyUser = (req,res) => {
     User.findByPk(req.user.id, {
-        attricutes: ["id", "username", "email", "name"]
+        attributes: ["id", "username", "email", "name"]
     })
     .then(foundUser => {
         res.status(constants.SUCCESS).json(foundUser);

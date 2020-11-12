@@ -8,6 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {model: "Users", key: "id"}
+      },
       profileImg: {
         type: Sequelize.STRING
       },
@@ -20,7 +24,7 @@ module.exports = {
       gamesFinished: {
         type: Sequelize.INTEGER
       },
-      gameWon: {
+      gamesWon: {
         type: Sequelize.INTEGER
       },
       points: {

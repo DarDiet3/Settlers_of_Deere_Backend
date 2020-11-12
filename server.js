@@ -35,6 +35,7 @@ app.use(bodyParser.json())
 
 app.use('/auth', routes.auth);
 app.use('/user', routes.user); //ToDo: add Verify Token Midstep
+app.use("/profile", verifyToken, routes.profile);
 //ToDo: Figure out where to route leaderboard
 
 app.listen(process.env.PORT, () => {
