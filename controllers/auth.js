@@ -75,7 +75,7 @@ const login = (req, res) => {
                             username: foundUser.username,
                             id: foundUser.id
                         },
-                        process.nextTick.JWT_SECRET,
+                        process.env.JWT_SECRET,
                         {
                             expiresIn: "1 day"
                         }
