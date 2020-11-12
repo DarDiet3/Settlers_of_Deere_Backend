@@ -20,7 +20,7 @@ const signUp = (req,res) => {
                 res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
             }
             req.body.password = hashedPwd;
-            let newUser1;
+
             User.create(req.body)
             .then(newUser => {
                 const token = jwt.sign(
@@ -39,8 +39,7 @@ const signUp = (req,res) => {
                     "user": newUser
                 });
 
-                newUser1 = newUser;
-                console.log(newUser.id)
+
                 return Profile.create({
                     userId: newUser.id,
                     profileImg: "",
