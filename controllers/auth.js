@@ -13,11 +13,11 @@ const signUp = (req,res) => {
     // ToDo: add code for having default profile image and no image
     bcrypt.genSalt(10, (err,salt) => {
         if(err) {
-            res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+            res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR1: ${err}`);
         }
         bcrypt.hash(req.body.password, salt, (err, hashedPwd) => {
             if(err){
-                res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+                res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR2: ${err}`);
             }
             req.body.password = hashedPwd;
 
@@ -54,7 +54,7 @@ const signUp = (req,res) => {
                 
             })
             .catch(err => {
-                res.status(constants.BAD_REQUEST).end(`ERROR: ${err}`);
+                res.status(constants.BAD_REQUEST).end(`ERROR3: ${err}`);
             })
         })
     })
