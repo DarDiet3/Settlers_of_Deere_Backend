@@ -23,8 +23,6 @@ const getUserProfData = (req, res) => {
 }
 
 const editProfile = (req, res) => {
-    console.log(req.body)
-    console.log(req.params)
     Profile.update(req.body, {
         where: {
             userId: req.params.id
