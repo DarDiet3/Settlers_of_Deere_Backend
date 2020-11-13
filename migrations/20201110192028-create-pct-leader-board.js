@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('PctLeaderBoards', {
+    await queryInterface.createTable('pctleaderboards', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,18 +11,18 @@ module.exports = {
       username: {
         type: Sequelize.STRING
       },
-      gamesStarted: {
+      games_started: {
         type: Sequelize.INTEGER
       },
-      gamesWon: {
+      games_won: {
         type: Sequelize.INTEGER
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date()
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date()
@@ -30,6 +30,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('PctLeaderBoards');
+    await queryInterface.dropTable('pctleaderboards');
   }
 };

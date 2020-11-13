@@ -1,30 +1,30 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('UserProfiles', {
+    await queryInterface.createTable('userprofiles', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      user_id: {
         type: Sequelize.INTEGER,
         references: {model: "Users", key: "id"}
       },
-      profileImg: {
+      profile_img: {
         type: Sequelize.STRING
       },
       bio: {
         type: Sequelize.TEXT
       },
-      gamesStarted: {
+      games_started: {
         type: Sequelize.INTEGER
       },
-      gamesFinished: {
+      games_finished: {
         type: Sequelize.INTEGER
       },
-      gamesWon: {
+      games_won: {
         type: Sequelize.INTEGER
       },
       points: {
@@ -36,12 +36,12 @@ module.exports = {
       combines: {
         type: Sequelize.INTEGER
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date()
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date()
@@ -49,6 +49,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('UserProfiles');
+    await queryInterface.dropTable('userprofiles');
   }
 };
