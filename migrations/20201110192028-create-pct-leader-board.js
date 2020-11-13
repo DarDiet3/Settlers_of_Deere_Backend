@@ -30,6 +30,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('PctLeaderBoards');
+    await queryInterface.dropTable('pctleaderboards');
   }
 };

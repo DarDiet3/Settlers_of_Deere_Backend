@@ -27,6 +27,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('PointsLeaderBoards');
+    await queryInterface.dropTable('pointsleaderboards');
   }
 };
