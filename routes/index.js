@@ -3,5 +3,5 @@ module.exports = {
     pctleaderboard: require("./pctleaderboard"),
     pointsleaderboard: require("./pointsleaderboard"),
     user: require("./user"),
-    profile: require("./userprofile")
+    profile: require("./profile")
 }
