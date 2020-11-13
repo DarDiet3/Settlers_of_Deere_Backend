@@ -43,7 +43,7 @@ const signUp = (req,res) => {
                 });
 
 
-                return Profile.create({
+                Profile.create({
                     userId: newUser.id,
                     profileImg: "",
                     bio: "",
