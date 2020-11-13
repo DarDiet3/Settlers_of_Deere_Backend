@@ -3,11 +3,11 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
-const cors = require ("cors");
+const cors = require("cors");
 
 const app = express();
 const routes = require("./routes");
-
+const constants = require("./constants");
 
 const corsOptions = {
     origin: ['http://localhost:3000'],
@@ -25,7 +25,7 @@ const verifyToken = (req, res, next) => {
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decodedUser) => {
     if(err || !decodedUser){
-      return regexp.status(constants.UNAUTHORIZED).send(`ERROR: ${err}`);
+      return res.status(constants.UNAUTHORIZED).send(`ERROR: ${err}`);
     }
   })
 }
@@ -34,8 +34,8 @@ app.use(cors(corsOptions))
 app.use(bodyParser.json())
 
 app.use('/auth', routes.auth);
-app.use('/user', routes.user); //ToDo: add Verify Token Midstep
-app.use("/profile", verifyToken, routes.profile);
+app.use('/user',  routes.user); //ToDo: add Verify Token Midstep
+app.use("/profile", routes.profile);
 //ToDo: Figure out where to route leaderboard
 
 app.listen(process.env.PORT, () => {

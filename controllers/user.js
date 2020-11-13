@@ -4,10 +4,12 @@ const Profile = require("../models").UserProfile;
 const constants = require("../constants");
 
 const getUserData = (req, res) => {
+    console.log(req.body)
     User.findByPk(req.user.id, {
         include: [
             {
-                model: Profile
+                model: Profile,
+                as: "userProfile"
             }
         ]
     })

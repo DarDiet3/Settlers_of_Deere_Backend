@@ -3,6 +3,6 @@ const router = express.Router();
 const ctrl = require("../controllers");
 
 
-router.get('/:id')
+router.get('/:id', ctrl.profile.getUserProfData)
 
 module.exports = router;
