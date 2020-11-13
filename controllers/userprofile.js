@@ -6,6 +6,7 @@ const constants = require("../constants");
 const getUserProfData = (req, res) => {
     console.log("params commin at cha")
     console.log(req.params)
+    console.log(User.findAll())
     User.findByPk(req.params.id, {
         include: [
             {
