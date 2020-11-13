@@ -1,5 +1,5 @@
 const User = require("../models").User;
-const Profile = require("../models").UserProfile;
+const Profile = require("../models").Userprofile;
 
 const constants = require("../constants");
 
