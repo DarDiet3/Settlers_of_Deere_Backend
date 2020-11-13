@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
   };
-  UserProfile.init({
+  Profile.init({
     userId: DataTypes.INTEGER,
     profileImg: DataTypes.STRING,
     bio: DataTypes.TEXT,
