@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       bio: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       gamesStarted: {
         type: Sequelize.INTEGER
