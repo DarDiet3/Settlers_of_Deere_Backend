@@ -33,7 +33,22 @@ const editUser = (req, res) => {
     })
 }
 
+const deleteUser = (req, res) => {
+    User.destroy({
+        wehre: {id: req.params.id}
+    })
+    .then(() => {
+        Profile.destroy({
+            where: {id: req.params.id}
+        })
+    })
+    .then(() => {
+        res.clearCookie("jwt");
+    })
+}
+
 module.exports = {
     getUserData,
-    editUser
+    editUser,
+    deleteUser
 }
