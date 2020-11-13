@@ -21,6 +21,28 @@ const getUserProfData = (req, res) => {
         res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
     })
 }
+
+const editProfile = (req, res) => {
+    console.log(req.body)
+    console.log(req.params)
+    Profile.update(req.body, {
+        where: {
+            userId: req.params.id
+        }, 
+        returning: true
+    })
+    .then(updatedProfile => {
+        if(updatedProfile[0] === 0){
+            res.status(constants.BAD_REQUEST).send("ERROR: Incorrect Profile Id")}
+    })
+    .catch(err => {
+        res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+    })
+}
+
+
+
 module.exports = {
-    getUserProfData
+    getUserProfData,
+    editProfile
 }
