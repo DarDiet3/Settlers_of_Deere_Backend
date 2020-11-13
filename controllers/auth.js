@@ -35,7 +35,8 @@ const signUp = (req,res) => {
                         expiresIn: "1 day"
                     }
                 );
-
+                    console.log("I'm in here")
+                    console.log(`Token: ${token}`)
                 res.status(constants.SUCCESS).json({
                     "token": token,
                     "user": newUser
