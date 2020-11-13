@@ -93,7 +93,7 @@ const login = (req, res) => {
         }
     })
     .catch(err => {
-        res.statsu(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+        res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
     })
 }
 
