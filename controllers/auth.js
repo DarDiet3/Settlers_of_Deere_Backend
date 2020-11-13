@@ -14,12 +14,12 @@ const signUp = (req,res) => {
     bcrypt.genSalt(10, (err,salt) => {
         if(err) {
             res.send(`1: ${err}`)
-            res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+            // res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
         }
         bcrypt.hash(req.body.password, salt, (err, hashedPwd) => {
             if(err){
                 res.send(`2: ${err}`)
-                res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+                // res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
             }
             req.body.password = hashedPwd;
 
@@ -57,7 +57,7 @@ const signUp = (req,res) => {
             })
             .catch(err => {
                 res.send(`3: ${err}`)
-                res.status(constants.BAD_REQUEST).send(`ERROR: ${err}`);
+                // res.status(constants.BAD_REQUEST).send(`ERROR: ${err}`);
             })
         })
     })
