@@ -10,7 +10,8 @@ const routes = require("./routes");
 const constants = require("./constants");
 
 const corsOptions = {
-    origin: ['http://localhost:3000'],
+    origin: ["http://settlers-of-deere.surge.sh"],
+    // origin: ['http://localhost:3000'],
     methods: "GET,POST,PUT,DELETE",
     credentials: true, //allows session cookies to be sent back and forth
     optionsSuccessStatus: 200 //legacy browsers
@@ -30,6 +31,14 @@ const verifyToken = (req, res, next) => {
   })
 }
 
+`app.all('*', function(req, res, next) {
+  var origin = req.get('origin'); 
+  res.header('Access-Control-Allow-Origin', origin);
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});`
+app.options("*", cors(corsOptions))
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
 

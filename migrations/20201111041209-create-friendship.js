@@ -1,25 +1,25 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Friendships', {
+    await queryInterface.createTable('friendships', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      user_id: {
         type: Sequelize.INTEGER
       },
-      friendId: {
+      friend_id: {
         type: Sequelize.INTEGER
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date()
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date()
@@ -27,7 +27,7 @@ module.exports = {
     },{
       uniqueKeys: {
         actions_unique: {
-          fields: ["userId", "friendId"]
+          fields: ["user_id", "friend_id"]
         }
       }
     });

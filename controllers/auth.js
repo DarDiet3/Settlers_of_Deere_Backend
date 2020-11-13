@@ -13,11 +13,13 @@ const signUp = (req,res) => {
     // ToDo: add code for having default profile image and no image
     bcrypt.genSalt(10, (err,salt) => {
         if(err) {
-            res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+            res.send(`1: ${err}`)
+            // res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
         }
         bcrypt.hash(req.body.password, salt, (err, hashedPwd) => {
             if(err){
-                res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+                res.send(`2: ${err}`)
+                // res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
             }
             req.body.password = hashedPwd;
 
@@ -33,7 +35,8 @@ const signUp = (req,res) => {
                         expiresIn: "1 day"
                     }
                 );
-
+                    console.log("I'm in here")
+                    console.log(`Token: ${token}`)
                 res.status(constants.SUCCESS).json({
                     "token": token,
                     "user": newUser
@@ -54,7 +57,8 @@ const signUp = (req,res) => {
                 
             })
             .catch(err => {
-                res.status(constants.BAD_REQUEST).end(`ERROR: ${err}`);
+                res.send(`3: ${err}`)
+                // res.status(constants.BAD_REQUEST).send(`ERROR: ${err}`);
             })
         })
     })
@@ -93,7 +97,7 @@ const login = (req, res) => {
         }
     })
     .catch(err => {
-        res.statsu(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+        res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
     })
 }
 

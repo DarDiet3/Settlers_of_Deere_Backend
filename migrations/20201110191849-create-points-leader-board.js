@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('PointsLeaderBoards', {
+    await queryInterface.createTable('pointsleaderboards', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,12 +14,12 @@ module.exports = {
       points: {
         type: Sequelize.INTEGER
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date()
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date()
