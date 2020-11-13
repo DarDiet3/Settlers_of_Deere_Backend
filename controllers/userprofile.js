@@ -1,9 +1,10 @@
 const User = require("../models").User;
-const Profile = require("../models").Userprofile;
+const Profile = require("../models").UserProfile;
 
 const constants = require("../constants");
 
 const getUserProfData = (req, res) => {
+    console.log("params commin at cha")
     console.log(req.params)
     User.findByPk(req.params.id, {
         include: [
@@ -17,6 +18,7 @@ const getUserProfData = (req, res) => {
         res.status(constants.SUCCESS).json(userData)
     })
     .catch(err => {
+        console.log("1")
         console.log(err)
         res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
     })
