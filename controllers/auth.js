@@ -54,7 +54,7 @@ const signUp = (req,res) => {
                 
             })
             .catch(err => {
-                res.status(constants.BAD_REQUEST).end(`ERROR3: ${err}`);
+                res.status(constants.BAD_REQUEST).send(`ERROR3: ${err}`);
             })
         })
     })
